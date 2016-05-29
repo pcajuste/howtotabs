@@ -3,14 +3,17 @@
   "version": "1.0.0",
   "description": "HowTo Tabs App",
   "main": "jakefile.js",
+  "engines": {
+    "node": "4.1.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {},
   "devDependencies": {
-    "jake": "^8.0.12"
+    "jake": "^8.0.12",
+    "semver": "^5.1.0"
   },
   "repository": {
     "type": "git",
