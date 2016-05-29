@@ -1,6 +1,7 @@
 (function(){
     "use strict";
     
+    //helpful to verify version between two apps
     var semver = require('semver');
             
     desc('Default Build');

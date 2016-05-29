@@ -13,6 +13,7 @@
   "license": "ISC",
   "devDependencies": {
     "jake": "^8.0.12",
+    "jshint": "^2.9.2",
     "semver": "^5.1.0"
   },
   "repository": {
