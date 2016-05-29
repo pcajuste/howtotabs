@@ -1,7 +1,7 @@
 {
-  "name": "howtobuild",
+  "name": "howtotabs",
   "version": "1.0.0",
-  "description": "firstBuild",
+  "description": "HowTo Tabs App",
   "main": "jakefile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,5 +11,14 @@
   "dependencies": {},
   "devDependencies": {
     "jake": "^8.0.12"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pcajuste/howtotabs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pcajuste/howtotabs/issues"
+  },
+  "homepage": "https://github.com/pcajuste/howtotabs#readme",
+  "private": true
 }
