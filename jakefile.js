@@ -1,16 +1,26 @@
-/* globals desc: false, task: false, complete: false, fail: false */
+/* globals jake:false, desc:false, task:false, complete:false, fail:false */
 
 (function(){
     "use strict";
     
     var semver = require('semver');
     var jshint = require('simplebuild-jshint');
+    
+    //****************** General-purpose tasks
             
     desc('Default Build');
     //run version task as dependency so it runs first
-    task("default", ["version", "lint"], function(){
+    task("default", ["version", "lint", "http"], function(){
         console.log("\n\nBuild Ok");
     });
+    
+    desc("Run http server");
+    task("http", function(){
+        jake.exec("node node_modules/http-server/bin/http-server src", {interactive: true}, complete);
+        console.log("Running local HTTP server");
+    });
+    
+    // ******************  Supporting Tasks
     
     //desc is the documentation for the task
     // to see it the document associated with the task ... `jake -T`
@@ -35,7 +45,7 @@
         
         //better alternative than above is simplebuild-jshint
         jshint.checkFiles({
-            files: "jakefile.js",
+            files: ["jakefile.js","src/**/*.js"],
             options: {
                 bitwise: true,
                 eqeqeq: true,
