@@ -46,33 +46,40 @@
         //better alternative than above is simplebuild-jshint
         jshint.checkFiles({
             files: ["jakefile.js","src/**/*.js"],
-            options: {
-                bitwise: true,
-                eqeqeq: true,
-                curly: true,
-                freeze: true,
-                futurehostile: true,
-                latedef: "nofunc",
-                noarg: true,
-                nocomma: true,
-                nonbsp: true,
-                nonew: true,
-                strict: true,
-                undef: true,
-                
-                node: true,
-                browser: true
-            },
-            globals: {
-                //mocha
-                describe: false,
-                it: false,
-                before: false,
-                beforeEach: false,
-                after: false,
-                afterEach: false
-            }
+            options: lintOptions(),
+            globals: lintGlobals()
         }, complete, fail);
     }, { async: true });
+    
+    function lintOptions(){
+        return {
+            bitwise: true,
+            eqeqeq: true,
+            curly: true,
+            freeze: true,
+            futurehostile: true,
+            latedef: "nofunc",
+            noarg: true,
+            nocomma: true,
+            nonbsp: true,
+            nonew: true,
+            strict: true,
+            undef: true,
+            node: true,
+            browser: true
+        };
+    }
+    
+    function lintGlobals(){
+        return {
+            //mocha
+            describe: false,
+            it: false,
+            before: false,
+            beforeEach: false,
+            after: false,
+            afterEach: false
+        };
+    }
     
 })();
