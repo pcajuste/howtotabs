@@ -69,8 +69,17 @@
         karma.run({
             configFile: KARMA_CONFIG,
             expectedBrowsers: [
+                //Macs
                 "Chrome 50.0.2661 (Mac OS X 10.11.4)",
-                "Firefox 46.0.0 (Mac OS X 10.11.0)"
+                "Firefox 46.0.0 (Mac OS X 10.11.0)",
+                //Windows
+                "Chrome 50.0.2661 (Windows 7 0.0.0)",
+                "IE 11.0.0 (Windows 7 0.0.0)",
+                "Firefox 43.0.0 (Windows 7 0.0.0)",
+                //iOS
+                "Mobile Safari 9.0.0 (iOS 9.3.0)"
+                //Android
+                "Chrome Mobile 44.0.2403 (Android 6.0.0)"
             ],
             strict: !process.env.loose  // run ./jake.sh loose=true to report errors but still complete all tests
         }, complete, fail);
