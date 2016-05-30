@@ -7,10 +7,15 @@
     var jshint = require('simplebuild-jshint');
     
     //****************** General-purpose tasks
-            
+    desc("start Karma Server(run this first)");
+    task("karma", function(){
+        console.log("Starting karma server: ");
+        jake.exec("node node_modules/karma/bin/karma start");
+        // jake.exec("node node_modules/karma/bin/karma run");
+    });        
     desc('Default Build');
     //run version task as dependency so it runs first
-    task("default", ["version", "lint", "http"], function(){
+    task("default", ["karma","version", "lint", "http"], function(){
         console.log("\n\nBuild Ok");
     });
     
