@@ -77,7 +77,7 @@
                 "IE 11.0.0 (Windows 7 0.0.0)",
                 "Firefox 43.0.0 (Windows 7 0.0.0)",
                 //iOS
-                "Mobile Safari 9.0.0 (iOS 9.3.0)"
+                "Mobile Safari 9.0.0 (iOS 9.3.0)",
                 //Android
                 "Chrome Mobile 44.0.2403 (Android 6.0.0)"
             ],
