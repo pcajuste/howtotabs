@@ -5,24 +5,30 @@
     
     var semver = require('semver');
     var jshint = require('simplebuild-jshint');
+    var karma = require('simplebuild-karma');
+    
+    var KARMA_CONFIG = "karma.conf.js";
+    
     
     //****************** General-purpose tasks
     desc("start Karma Server(run this first)");
     task("karma", function(){
         console.log("Starting karma server: ");
-        jake.exec("node node_modules/karma/bin/karma start");
-        // jake.exec("node node_modules/karma/bin/karma run");
-    });        
+        
+        karma.start({
+            configFile: KARMA_CONFIG         
+        }, complete, fail);
+    }, {async: true});   
+        
     desc('Default Build');
     //run version task as dependency so it runs first
-    task("default", ["karma","version", "lint", "http"], function(){
+    task("default", ["version", "lint", "test"], function(){
         console.log("\n\nBuild Ok");
     });
     
-    desc("Run http server");
+    desc("Run local http server");
     task("http", function(){
         jake.exec("node node_modules/http-server/bin/http-server src", {interactive: true}, complete);
-        console.log("Running local HTTP server");
     });
     
     // ******************  Supporting Tasks
@@ -55,6 +61,15 @@
             globals: lintGlobals()
         }, complete, fail);
     }, { async: true });
+    
+    desc("Run tests");
+    task("test", function(){
+        console.log("Testing JavaScript");
+        
+        karma.run({
+            configFile: KARMA_CONFIG
+        }, complete, fail);
+    }, { async: true }); 
     
     function lintOptions(){
         return {
