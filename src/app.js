@@ -3,7 +3,7 @@
     
     var addition = require("./addition.js");
     
-    console.log(addition.add(4, 4));
+    console.log("4 + 4 equals: " + addition.add(4, 4));
     
     console.log("Good morning!");
 })();
