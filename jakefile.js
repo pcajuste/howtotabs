@@ -8,7 +8,7 @@
     var karma = require('simplebuild-karma');
     
     var KARMA_CONFIG = "karma.conf.js";
-    
+    var DIST_DIR = "generated/dist";
     
     //****************** General-purpose tasks
     desc("start Karma Server(run this first)");
@@ -27,8 +27,13 @@
     });
     
     desc("Run local http server");
-    task("http", function(){
-        jake.exec("node node_modules/http-server/bin/http-server src", {interactive: true}, complete);
+    task("http", ["build"], function(){
+        jake.exec("node node_modules/http-server/bin/http-server DIST_DIR", {interactive: true}, complete);
+    });
+    
+    desc("Erase all generated files");
+    task("clean", function(){
+       console.log("Erasing generated files"); 
     });
     
     // ******************  Supporting Tasks
@@ -84,6 +89,14 @@
             strict: !process.env.loose  // run ./jake.sh loose=true to report errors but still complete all tests
         }, complete, fail);
     }, { async: true }); 
+    
+    desc("Build distribution directory");
+    task("build", [DIST_DIR], function(){
+        console.log("Building distribution directory");
+    });
+    
+    //creates directories
+    directory(DIST_DIR);
     
     function lintOptions(){
         return {
