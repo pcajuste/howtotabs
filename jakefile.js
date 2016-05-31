@@ -6,7 +6,7 @@
     var semver = require('semver');
     var jshint = require('simplebuild-jshint');
     var karma = require('simplebuild-karma');
-    var shell = require('shell');
+    var shell = require('shelljs');
     
     var KARMA_CONFIG = "karma.conf.js";
     var DIST_DIR = "generated/dist";
@@ -29,7 +29,10 @@
     
     desc("Run local http server");
     task("http", ["build"], function(){
-        jake.exec("node node_modules/http-server/bin/http-server DIST_DIR", {interactive: true}, complete);
+        jake.exec("node node_modules/http-server/bin/http-server " + DIST_DIR, 
+            { interactive: true }, 
+            complete
+        );
     });
     
     desc("Erase all generated files");
@@ -95,6 +98,17 @@
     desc("Build distribution directory");
     task("build", [DIST_DIR], function(){
         console.log("Building distribution directory");
+        
+        //deletes  all files from generated/dist directory to avoid conflicts
+        shell.rm("-rf", DIST_DIR + "/*");
+        
+        shell.cp("src/index.html", DIST_DIR);
+        
+        //generate the bundle.js file from the app.js file using browserify
+        jake.exec("node node_modules/browserify/bin/cmd.js src/app.js -o " + DIST_DIR + "/bundle.js", 
+            { interactive: true }, 
+            complete
+        );
     });
     
     //creates directories
