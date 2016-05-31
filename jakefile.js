@@ -66,7 +66,7 @@
         
         //better alternative than above is simplebuild-jshint
         jshint.checkFiles({
-            files: ["jakefile.js","src/**/*.js"],
+            files: ["jakefile.js","src/javascript/**/*.js"],
             options: lintOptions(),
             globals: lintGlobals()
         }, complete, fail);
@@ -102,10 +102,11 @@
         //deletes  all files from generated/dist directory to avoid conflicts
         shell.rm("-rf", DIST_DIR + "/*");
         
-        shell.cp("src/index.html", DIST_DIR);
+        shell.cp("src/content/*", DIST_DIR);
         
         //generate the bundle.js file from the app.js file using browserify
-        jake.exec("node node_modules/browserify/bin/cmd.js src/app.js -o " + DIST_DIR + "/bundle.js", 
+        jake.exec(
+            "node node_modules/browserify/bin/cmd.js src/javascript/app.js -o " + DIST_DIR + "/bundle.js", 
             { interactive: true }, 
             complete
         );
