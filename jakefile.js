@@ -1,4 +1,4 @@
-/* globals jake:false, desc:false, task:false, complete:false, fail:false */
+/* globals directory:false, jake:false, desc:false, task:false, complete:false, fail:false */
 
 (function(){
     "use strict";
@@ -33,12 +33,12 @@
             { interactive: true }, 
             complete
         );
-    });
+    }, { async: true });
     
     desc("Erase all generated files");
     task("clean", function(){
        console.log("Erasing generated files"); 
-       shell.rm("-rf", "generated")
+       shell.rm("-rf", "generated");
     });
     
     // ******************  Supporting Tasks
@@ -110,7 +110,7 @@
             { interactive: true }, 
             complete
         );
-    });
+    }, { async: true});
     
     //creates directories
     directory(DIST_DIR);
